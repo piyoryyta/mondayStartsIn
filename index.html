@@ -3,12 +3,11 @@
 	<head>
 		<style type="text/css">
 			body {
-				height: -webkit-fill-available;
-				width: -webkit-fill-available;
 				margin: 2%;
-				background-color:rgb(10,10,10);
+				background-color:rgb(10,10,15);
 				color: rgb(200,10,10);
 				text-align: center;
+				text-shadow: 0 0 50px red,0 0 15px red;
 			}
 			.timer{
 				height: 80%;
@@ -23,6 +22,48 @@
 				font-size: 5em;
 				font-family: Courier New;
 			}
+			.effect {
+				background: url("noise.png");
+				animation: noise 8s steps(10) infinite;
+				z-index: 2;
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			@keyframes noise {
+				to {
+					background-position: 0 0;
+				}
+				10% {
+					background-position: -5% -10%;
+				}
+				20% {
+					background-position: -15% 5%;
+				}
+				30% {
+					background-position: 7% -25%;
+				}
+				40% {
+					background-position: 20% 25%;
+				}
+				50% {
+					background-position: -25% 10%;
+				}
+				60% {
+					background-position: 15% 5%;
+				}
+				70% {
+					background-position: 0 15%;
+				}
+				80% {
+					background-position: 25% 35%;
+				}
+				90% {
+					background-position: -10% 10%;
+				}
 		</style>
 		<script type="text/javascript">
 			var now = Date.now();
@@ -32,8 +73,8 @@
 			var tick = function(delta){
 				now+=delta;
 			}
-			var correctTime  =function(){
-				now = Date().now();
+			var correctTime = function(){
+				now = Date.now();
 			}
 			var getNextDay = function(index) {
 				var nextDay = new Date();
@@ -61,12 +102,14 @@
 			setInterval(writeCtdn, 10);
 		</script>
 		<meta charset="utf-8">
-		<title></title>
+		<title>Monday starts in...</title>
 	</head>
 	<body>
 		Monday starts in
-		<div class="timer">
-
+		<div class="timer"></div>
+		<div class="rightMenu">
+			<!-- <select>sda</select> -->
 		</div>
+		<div class="effect"> </div>
 	</body>
 </html>
