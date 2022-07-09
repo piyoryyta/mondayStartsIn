@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="jp">
+	<head>
+		<style type="text/css">
+			body {
+				height: -webkit-fill-available;
+				width: -webkit-fill-available;
+				margin: 2%;
+				background-color:rgb(10,10,10);
+				color: rgb(200,10,10);
+				text-align: center;
+			}
+			.timer{
+				height: 80%;
+				width: 90%;
+				top: 50%;
+				left: 50%;
+				transform: translateY(-50%) translateX(-50%);
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 5em;
+				font-family: Courier New;
+			}
+		</style>
+		<script type="text/javascript">
+			var now = Date.now();
+			var nextMonday = new Date();
+			var timerElement;
+
+			var tick = function(delta){
+				now+=delta;
+			}
+			var correctTime  =function(){
+				now = Date().now();
+			}
+			var getNextDay = function(index) {
+				var nextDay = new Date();
+				nextDay.setUTCHours(0,0,0,0);
+				nextDay.setUTCDate(nextDay.getUTCDate() + (index+(7-nextDay.getUTCDay())) % 7);
+				nextDay.setUTCHours(nextDay.getUTCHours()-9)
+				return nextDay.getTime();
+			}
+			var writeCtdn = function(){
+				if(nextMonday < now){
+					nextMonday = getNextDay(4);
+				}
+				var timer = new Date(nextMonday - now);
+				timerElement.textContent = ("00"+(timer.getUTCDay() * 24 + timer.getUTCHours())) + ":" + ("00"+timer.getMinutes()).slice(-2) + ":" + ("00"+timer.getSeconds()).slice(-2) + "." + ("000"+timer.getMilliseconds()).slice(-3).slice(0,2);
+				if(timer.getUTCDay()>2){
+					timerElement.textContent = "Have a great weekdays ;)";
+				}
+			}
+
+			window.onload = function(){
+				timerElement = document.getElementsByClassName('timer')[0];
+			}
+			setInterval(tick, 10, 10);
+			setInterval(correctTime,5000);
+			setInterval(writeCtdn, 10);
+		</script>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		Monday starts in
+		<div class="timer">
+
+		</div>
+	</body>
+</html>
