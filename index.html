@@ -47,7 +47,7 @@
 					nextMonday = getNextDay(4);
 				}
 				var timer = new Date(nextMonday - now);
-				timerElement.textContent = ("00"+(timer.getUTCDay() * 24 + timer.getUTCHours())) + ":" + ("00"+timer.getMinutes()).slice(-2) + ":" + ("00"+timer.getSeconds()).slice(-2) + "." + ("000"+timer.getMilliseconds()).slice(-3).slice(0,2);
+				timerElement.textContent = ("00"+(timer.getUTCDay() * 24 + timer.getUTCHours())).slice(-2) + ":" + ("00"+timer.getMinutes()).slice(-2) + ":" + ("00"+timer.getSeconds()).slice(-2) + "." + ("000"+timer.getMilliseconds()).slice(-3).slice(0,2);
 				if(timer.getUTCDay()>2){
 					timerElement.textContent = "Have a great weekdays ;)";
 				}
