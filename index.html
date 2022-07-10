@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="jp">
 	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="How long can you enjoy your weekend?">
 		<meta name="theme-color" content="#0A0A28">
 		<meta name="google-site-verification" content="hGipoUdTXUvrjn-j-1OBEUlNH9sHQCMlWXo0rjlgC0k" />
 		<style type="text/css">
 			body {
 				margin: 2%;
-				background-color:rgb(10,10,15);
+				background-color:rgb(13,13,20);
 				color: rgb(200,10,10);
 				text-align: center;
 				text-shadow: 0 0 50px red,0 0 15px red;
@@ -41,8 +43,8 @@
 				width: 100%;
 				height: 100%;
 
-				box-shadow: inset 0 0 400px rgba(0, 0, 0, 0.9),
-							inset 0 0 800px rgba(0, 0, 0, 0.3);
+				box-shadow: inset 0 0 500px rgba(0, 0, 0, 0.6),
+							inset 0 0 1600px rgba(0, 0, 0, 2);
 			}
 			.menu{
 				z-index: 3;
@@ -83,7 +85,6 @@
 				}
 			}
 		</style>
-		<meta charset="utf-8">
 		<title>Monday starts in...</title>
 	</head>
 	<body>
@@ -110,9 +111,11 @@
 					nextMonday = getNextDay(4);
 				}
 				var timer = new Date(nextMonday - now);
-				timerElement.textContent = ("00"+(timer.getUTCDay() * 24 + timer.getUTCHours())).slice(-2) + ":" + ("00"+timer.getMinutes()).slice(-2) + ":" + ("00"+timer.getSeconds()).slice(-2) + "." + ("000"+timer.getMilliseconds()).slice(-3).slice(0,2);
-				if(timer.getUTCDay()>2){
-					timerElement.textContent = "Have great weekdays\n;)";
+				if(timer.getUTCDay()<2){
+					document.title=("00"+(timer.getUTCDay() * 24 + timer.getUTCHours())).slice(-2) + ":" + ("00"+timer.getMinutes()).slice(-2) + ":" + ("00"+timer.getSeconds()).slice(-2) + " Until Monday";
+					timerElement.textContent = ("00"+(timer.getUTCDay() * 24 + timer.getUTCHours())).slice(-2) + ":" + ("00"+timer.getMinutes()).slice(-2) + ":" + ("00"+timer.getSeconds()).slice(-2) + "." + ("000"+timer.getMilliseconds()).slice(-3).slice(0,2);
+				}else{
+					timerElement.textContent = "Have a great weekday\n;)";
 				}
 			}
 
